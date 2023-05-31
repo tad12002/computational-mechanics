@@ -1,7 +1,10 @@
+
 # Computational Mechanics
 > __Note__: This Open Educational Resource was built with
 [Jupyter-Book](https://jupyterbook.org) __Check it out -->__ [![Jupyter Book
 Badge](images/badge.svg)](https://cooperrc.github.io/computational-mechanics/README.html)
+
+## My account for comp mech
 
 Greetings!
 
