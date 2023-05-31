@@ -4,10 +4,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: 0.13
+    jupytext_version: 1.11.4
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -56,6 +56,11 @@ famously created **IPython** as a side-project during his PhD. The "I"
 in IPython stands for interactive: a style of computing that is very
 powerful for developing ideas and solutions incrementally, thinking with
 the computer as a kind of collaborator.
+
++++
+
+Note to Self:
+blah blah
 
 +++
 
