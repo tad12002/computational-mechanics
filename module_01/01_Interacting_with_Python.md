@@ -172,6 +172,14 @@ symbols are what you would expect, except for the
 The `%` symbol is the _modulo_ operator (divide and return the remainder), and the double-slash is _floor division_.
 
 ```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
 2 + 2
 ```
 
@@ -250,9 +258,7 @@ Use Python (as a calculator) to solve the following two problems:
     
 2. Suppose the cover price of a book is $\$ 24.95$, but bookstores get a $40\%$ discount. Shipping costs $\$3$ for the first copy and $75$ cents for each additional copy. What is the total wholesale cost for $60$ copies? Compare your answer with the solution up to 2 decimal numbers.
 
-```{code-cell} ipython3
-
-```
++++
 
 To reveal the answers, highlight the following line of text using the mouse:
 
@@ -302,6 +308,10 @@ are:
 Keep in mind, there are reserved words that you can't use; they are the special Python [keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords).
   
 OK. Let's assign some values to variables and do some operations with them:
+
+```{code-cell} ipython3
+
+```
 
 ```{code-cell} ipython3
 x = 3 
@@ -495,6 +505,10 @@ The Python comparison operators are: `<`, `<=`, `>`, `>=`, `==`, `!=`. They comp
 ```{code-cell} ipython3
 x = 3
 y = 5
+```
+
+```{code-cell} ipython3
+
 ```
 
 ```{code-cell} ipython3
