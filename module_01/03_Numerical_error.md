@@ -4,10 +4,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: 0.13
+    jupytext_version: 1.11.4
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -73,6 +73,8 @@ Calculate the terminal velocity for the given parameters, g=9.81 m/s$^2$, c=0.25
 ```
 
 ```{code-cell} ipython3
+#Parameters
+
 c=0.25 
 m=60
 g=9.81 
@@ -126,6 +128,15 @@ where
 ```{code-cell} ipython3
 for t in range(0,14,2):
     print('at time {:5.2f} s, speed is {:5.2f} m/s'.format(t,v_analytical(t,m,g,c)))
+```
+
+```{code-cell} ipython3
+for t in range (0,16,2):
+    print('at time {:5.2f} s, speed is {:5.2f} m.s'.format(t,v_analytical(t,m,g,c)))
+```
+
+```{code-cell} ipython3
+
 ```
 
 ## Analytical vs Computational Solution
