@@ -5,12 +5,13 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.3
+    jupytext_version: 1.11.4
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
+
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,17 +33,60 @@ min later the temperature is 80$^{o}$F.
 
 Assume ambient temperature is a constant 65$^{o}$F.
 
-1. Use Python to calculate $K$ using a finite difference approximation, $\frac{dT}{dt} \approx \frac{T(t+\Delta t)-T(t)}{\Delta t}$. 
+1. Use Python to calculate $K$ using a finite difference approximation, $\frac{dT}{dt} \approx \frac{T(t+\Delta t)-T(t)}{\Delta t}$.
+
++++
+
+# Question 1
 
 ```{code-cell} ipython3
+Ta = 65 #temp ambient in fahrenheit
+T1 = 85 #Initial temp of the corpse in fahrenheit
+T2 = 80 #Final temp of the corpse in fahrenheit
+dt = 45/60 #time elapsed between t1 and t2 in hours
+
+dT = T2 - T1
+k = -dT/dt/(T2 - Ta)
+
+print('The value of K is:', k)
 ```
 
-2. Change your work from problem 1 to create a function that accepts the temperature at two times, ambient temperature, and the time elapsed to return $K$. 
+2. Change your work from problem 1 to create a function that accepts the temperature at two times, ambient temperature, and the time elapsed to return $K$.
+
++++
+
+# Question 2
 
 ```{code-cell} ipython3
+def measure_K(T1, T2, Ta, dt):
+    '''This function returns the value of by using the finite difference approximation.
+    
+    Arguments
+    ---------
+    
+    T0 = Initial temperature
+    T2 = The temperature after two hours
+    Ta = ambient temperature
+    dt = Time elapsed
+    
+    
+    Returns
+    -------
+    measure_k: the value of k'''
+    
+    dT = T2 - T1  #Finds the value of dt
+    k = -dT/dt/(T2 - Ta)
+    return k
 ```
 
 ```{code-cell} ipython3
+T1 = 85   # initial temperature in °F
+T2 = 80   # temperature after 45 min or .75 hours in °F
+Ta = 65   # ambient temperature in °F
+dt = 45/60    # time elapsed in hours
+
+K = measure_K(T1, T2, Ta, dt)
+print("The value of k is:", K)
 ```
 
 3. A first-order thermal system has the following analytical solution, 
@@ -58,4 +102,33 @@ Assume ambient temperature is a constant 65$^{o}$F.
     c. At what time was the corpse 98.6$^{o}$F? i.e. what was the time of death?
 
 ```{code-cell} ipython3
+#Analytical Solution
+
+
+
+
+
+plt.plot(year, population, '', label='')
+plt.plot(t, p_analytical, label='')
+plt.xlabel('')
+plt.ylabel('')
+plt.legend()
+plt.title('')
+plt.show()
+
+
+
+
+
+#Euleur Integration
+
+
+
+plt.plot(year, population, '', label='')
+plt.plot(t, p_analytical, label='')
+plt.xlabel('')
+plt.ylabel('')
+plt.legend()
+plt.title('')
+plt.show()
 ```
