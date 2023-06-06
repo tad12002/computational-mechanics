@@ -43,10 +43,10 @@ Assume ambient temperature is a constant 65$^{o}$F.
 Ta = 65 #temp ambient in fahrenheit
 T1 = 85 #Initial temp of the corpse in fahrenheit
 T2 = 80 #Final temp of the corpse in fahrenheit
-dt = 45/60 #time elapsed between t1 and t2 in hours
+dt_k = 45/60 #time elapsed between t1 and t2 in hours
 
 dT = T2 - T1
-k = -dT/dt/(T2 - Ta)
+k = -dT/dt_k/(T2 - Ta)
 
 print('The value of K is:', k)
 ```
@@ -58,7 +58,7 @@ print('The value of K is:', k)
 # Question 2
 
 ```{code-cell} ipython3
-def measure_K(T1, T2, Ta, dt):
+def measure_K(T1, T2, Ta, dt_k):
     '''This function returns the value of by using the finite difference approximation.
     
     Arguments
@@ -75,7 +75,7 @@ def measure_K(T1, T2, Ta, dt):
     measure_k: the value of k'''
     
     dT = T2 - T1  #Finds the value of dt
-    k = -dT/dt/(T2 - Ta)
+    k = -dT/dt_k/(T2 - Ta)
     return k
 ```
 
@@ -83,9 +83,9 @@ def measure_K(T1, T2, Ta, dt):
 T1 = 85   # initial temperature in °F
 T2 = 80   # temperature after 45 min or .75 hours in °F
 Ta = 65   # ambient temperature in °F
-dt = 45/60    # time elapsed in hours
+dt_k = 45/60    # time elapsed in hours
 
-K = measure_K(T1, T2, Ta, dt)
+K = measure_K(T1, T2, Ta, dt_k)
 print("The value of k is:", K)
 ```
 
@@ -101,34 +101,107 @@ print("The value of k is:", K)
     
     c. At what time was the corpse 98.6$^{o}$F? i.e. what was the time of death?
 
++++
+
+# Question 3, Part A
+
 ```{code-cell} ipython3
-#Analytical Solution
+# Define the parameters
+T0 = 85 # initial temperature in °F
+Ta = 65 # ambient temperature in °F
+
+t_final = 10 # final time in hours
+N = 50 #number of time steps
+
+t = np.linspace(0,t_final,N)
+delta_time = np.diff(t)
 
 
+# Define the analytical solution
+def analytical_sol(T1, Ta, K, t):
+  return Ta + (T1 - Ta) * np.exp(-K * t)
+
+T_analytical = analytical_sol(T0, Ta, K, t)
+
+# Define the Euler integration method
+def euler_integration(T0, Ta, K, delta_time, N):
+  T_numerical = np.zeros(N)
+  T_numerical[0] = T0
+  for i in range(N-1):
+    T_numerical[i+1] = T_numerical[i] + delta_time[1] * (-K * (T_numerical[i] - Ta))
+  return T_numerical
+
+T_euler = euler_integration(T0, Ta, K, delta_time, N)
 
 
-
-plt.plot(year, population, '', label='')
-plt.plot(t, p_analytical, label='')
-plt.xlabel('')
-plt.ylabel('')
+plt.loglog(t,T_euler,'o',label=str(N)+' Euler steps')
+plt.loglog(t,T_analytical,label='analytical')
+plt.title('Euler Integration Solution vs. Analytical Solution')
+plt.xlabel('time (hours)')
+plt.ylabel('Temperature (f)')
 plt.legend()
-plt.title('')
+
 plt.show()
+```
+
+# Question 3, Part b
+
+```{code-cell} ipython3
+# Define the parameters
+T0 = 85 # initial temperature in °F
+Ta = 65 # ambient temperature in °F
+t_final = 10 # final time in hours
+N = 100 #number of time steps
+
+t = np.linspace(0,t_final,N)
+delta_time = np.diff(t)
 
 
+# Define the analytical solution
+def analytical_sol(T1, Ta, K, t):
+  return Ta + (T1 - Ta) * np.exp(-K * t)
 
+T_analytical = analytical_sol(T0, Ta, K, t)
 
+# Define the Euler integration method
+def euler_integration(T0, Ta, K, delta_time, N):
+  T_numerical = np.zeros(N)
+  T_numerical[0] = T0
+  for i in range(N-1):
+    T_numerical[i+1] = T_numerical[i] + delta_time[1] * (-K * (T_numerical[i] - Ta))
+  return T_numerical
 
-#Euleur Integration
+T_euler = euler_integration(T0, Ta, K, delta_time, N)
 
+for f in T_euler:
 
+    print(f)
+```
 
-plt.plot(year, population, '', label='')
-plt.plot(t, p_analytical, label='')
-plt.xlabel('')
-plt.ylabel('')
-plt.legend()
-plt.title('')
-plt.show()
+```{code-cell} ipython3
+t = float('inf')
+T_analytical = Ta + (T1 - Ta) * np.exp(-K * t)
+
+print('Final temperature as t approaches infinity: {:5.2f}'.format(T_analytical))
+```
+
+As you can see increasing the number of steps makes it so that you approach the ambient temperature value. Therefore as t approaches infinity the temperature will result in ambient and in this case ambient is 65 degrees faranheight.
+
++++
+
+# Question 3, Part c
+
+```{code-cell} ipython3
+Ta = 65  # Ambient temperature in °F
+T0 = 85  # Initial temperature in °F
+T_desired = 98.6  # Desired temperature in °F
+
+# Calculate the time of death when the corpse temperature reaches 98.6°F
+t_death = (np.log(T0 - Ta) - np.log(T_desired - Ta)) / k
+
+print('Time of death: {:5.4f} hours'.format(t_death))
+```
+
+```{code-cell} ipython3
+
 ```
