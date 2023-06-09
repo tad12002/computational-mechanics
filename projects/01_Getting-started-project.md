@@ -111,7 +111,8 @@ T0 = 85 # initial temperature in °F
 Ta = 65 # ambient temperature in °F
 
 t_final = 10 # final time in hours
-N = 50 #number of time steps
+N = 100
+
 
 t = np.linspace(0,t_final,N)
 delta_time = np.diff(t)
@@ -132,14 +133,14 @@ def euler_integration(T0, Ta, K, delta_time, N):
   return T_numerical
 
 T_euler = euler_integration(T0, Ta, K, delta_time, N)
-
-
-plt.loglog(t,T_euler,'o',label=str(N)+' Euler steps')
-plt.loglog(t,T_analytical,label='analytical')
+plt.plot(t,T_euler,'o',label=str(N)+' Euler steps')
+plt.plot(t,T_analytical,label='analytical')
 plt.title('Euler Integration Solution vs. Analytical Solution')
 plt.xlabel('time (hours)')
 plt.ylabel('Temperature (f)')
 plt.legend()
+
+
 
 plt.show()
 ```
@@ -199,7 +200,11 @@ T_desired = 98.6  # Desired temperature in °F
 # Calculate the time of death when the corpse temperature reaches 98.6°F
 t_death = (np.log(T0 - Ta) - np.log(T_desired - Ta)) / k
 
-print('Time of death: {:5.4f} hours'.format(t_death))
+deathtime = t_death + 11  #add initial start of death 11 am
+deathmin = round((deathtime-9)*60) #this converts the decimals and hours to minutes
+
+
+print('Time of death was at 9:',deathmin)
 ```
 
 ```{code-cell} ipython3

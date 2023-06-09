@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.3
+    jupytext_version: 1.11.4
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -552,10 +552,7 @@ _Wait... one more thing!_ What if you add a text label next to the bigger bubble
 OK, here you go a bit overboard, but you couldn't help it. You played around a lot to get this version of the plot. It uses `enumerate` to get pairs of indices and values from a list of style names; an `if` statement to select only the large-count styles; and the [`iloc[]`](http://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.DataFrame.iloc.html) slicing method of `pandas` to get a slice based on index position, and extract `abv` and `ibu` values to an $(x,y)$ coordinate for placing the annotation text. _Are you overkeen or what!_
 
 ```{code-cell} ipython3
-ax = style_means.plot.scatter(figsize=(10,10), 
-                               x='abv', y='ibu', s=style_counts*20, color=colors,
-                               title='Beer ABV vs. IBU mean values by style\n',
-                               alpha=0.3);
+ax = style_means.plot.scatter(figsize=(10,10), x='abv', y='ibu', s=style_counts*20, color=colors, title='Beer ABV vs. IBU mean values by style\n', alpha=0.3);
 
 for i, txt in enumerate(list(style_counts.index.values)):
     if style_counts.values[i] > 65:
@@ -584,3 +581,11 @@ for i, txt in enumerate(list(style_counts.index.values)):
 3. 40 years of boxplots (2011). Hadley Wickham and Lisa Stryjewski, _Am. Statistician_. [PDF available](http://vita.had.co.nz/papers/boxplots.pdf)
 4. [John Wilder Tukey](https://www.britannica.com/biography/John-Wilder-Tukey), Encyclopædia Britannica.
 5. John W. Tukey: His life and professional contributions (2002). David R. Brillinger, _Ann. Statistics_. [PDF available](https://www.stat.berkeley.edu/~brill/Papers/life.pdf)
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
